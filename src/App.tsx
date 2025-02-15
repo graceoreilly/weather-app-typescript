@@ -1,10 +1,14 @@
 import React from "react";
-import WeatherApp from "./WeatherApp/WeatherApp";
+import Header from "./components/Header/Header";
+import CurrentWeather from "./components/CurrentWeatherCard.tsx/CurrentWeatherCard";
+import FiveDayForecast from "./components/FiveDayForecast/FiveDayForecast";
 
 const App: React.FC = () => {
   return (
     <div>
-      <WeatherApp />
+      <Header />
+      <CurrentWeather />
+      <FiveDayForecast />
     </div>
   );
 };
