@@ -1,8 +1,7 @@
-import { useState, useEffect } from "react";
 import styles from "../../WeatherApp/WeatherApp.module.css";
 
 // const API_ENDPOINT = import.meta.env.VITE_APP_API_ENDPOINT;
-const API_KEY = import.meta.env.VITE_APP_API_KEY;
+
 
 // async function search() {
 //   const [data, setData] = useState({})
@@ -13,27 +12,15 @@ const API_KEY = import.meta.env.VITE_APP_API_KEY;
 // }
 
 function CurrentWeather() {
-  const [data, setData] = useState({});
-
-  const fetchWeather = async () => {
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=London&appid=${API_KEY}`;
-    const res = await fetch(url);
-    const searchData = await res.json();
-    setData(searchData);
-    console.log(searchData);
-  };
-
-  useEffect(() => {
-    fetchWeather();
-  }, []);
+  
 
   return (
     <div className={styles.appContainer}>
       <div>
-        <section className={styles.currentWeather}>
+        {/* <section className={styles.currentWeather}>
           <h2>Current Weather</h2>
-          <button onClick={fetchWeather}>CLICK HERE FOR DATA</button>
-        </section>
+          <button>CLICK HERE FOR DATA</button>
+        </section> */}
         <section className={styles.currentWeather}>
           <h2>Current Weather</h2>
           <div className={styles.weatherInfo}>
