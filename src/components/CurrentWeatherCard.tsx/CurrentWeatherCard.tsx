@@ -1,17 +1,7 @@
 import styles from "../../WeatherApp/WeatherApp.module.css";
 
-// const API_ENDPOINT = import.meta.env.VITE_APP_API_ENDPOINT;
 
-
-// async function search() {
-//   const [data, setData] = useState({})
-//   const url = `https://api.openweathermap.org/data/2.5/weather?q=London&appid=${API_KEY}`
-//   const res = await fetch(url);
-//   const searchData = await res.json;
-//   console.log(searchData)
-// }
-
-function CurrentWeather() {
+function CurrentWeather({data}) {
   
 
   return (
@@ -25,7 +15,7 @@ function CurrentWeather() {
           <h2>Current Weather</h2>
           <div className={styles.weatherInfo}>
             <div className={styles.temperature}>
-              <span className={styles.temp}>22°C</span>
+              <span className={styles.temp}>{data.main ? `${Math.floor(data.main.temp)}°C` : "Loading weather..."}</span>
               <span className={styles.feelsLike}>Feels like: 24°C</span>
             </div>
             <div className={styles.weatherIcon}>
