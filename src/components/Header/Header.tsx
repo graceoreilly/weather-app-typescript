@@ -1,11 +1,17 @@
 import styles from "../../WeatherApp/WeatherApp.module.css";
 import { Search } from "lucide-react";
 
-function Header({location, data, onInputChange, onKeyDown, onFetchWeather}) {
+interface HeaderProps {
+  location: string;
+  data: any;
+  onInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onKeyDown: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  onFetchWeather: () => void;
+}
 
-    return (
-    <>
-     <div className={styles.appContainer}>
+const Header: React.FC<HeaderProps> = ({ location, data, onInputChange, onKeyDown, onFetchWeather }) => {
+  return (
+    <div className={styles.appContainer}>
       <header className={styles.header}>
         <h1>Weather</h1>
         <div className={styles.searchBar}>
@@ -21,9 +27,8 @@ function Header({location, data, onInputChange, onKeyDown, onFetchWeather}) {
           </button>
         </div>
       </header>
-      </div>
-    </>
-    )
-}
+    </div>
+  );
+};
 
 export default Header;
