@@ -3,13 +3,12 @@ import { Search } from "lucide-react";
 
 interface HeaderProps {
   location: string;
-  data: any;
   onInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onKeyDown: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   onFetchWeather: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ location, data, onInputChange, onKeyDown, onFetchWeather }) => {
+const Header: React.FC<HeaderProps> = ({ location, onInputChange, onKeyDown, onFetchWeather }) => {
   return (
     <div className={styles.appContainer}>
       <header className={styles.header}>

@@ -6,8 +6,24 @@ import CurrentWeather from "./components/CurrentWeatherCard.tsx/CurrentWeatherCa
 
 const API_KEY = import.meta.env.VITE_APP_API_KEY;
 
+interface WeatherData {
+  name: string;
+  main: {
+    temp: number;
+    feels_like: number;
+    humidity: number;
+  };
+  weather: {
+    main: string;
+    description: string;
+  }[];
+  wind: {
+    speed: number;
+  };
+}
+
 const App: React.FC = () => {
-  const [data, setData] = useState({});
+  const [data, setData] = useState<WeatherData | null>(null);
   const [location, setLocation] = useState("");
 
 //React.ChangeEvent<HTMLInputElement> indicates that the event is a change event on an input element
@@ -38,12 +54,11 @@ const App: React.FC = () => {
     <div>
       <Header
         location={location}
-        data={data}
         onInputChange={handleInputChange}
         onKeyDown={handleKeyDown}
         onFetchWeather={() => fetchWeather(location)}
       />
-      <CurrentWeather data={data} />
+      {data && <CurrentWeather data={data} />}
     </div>
   );
 };
