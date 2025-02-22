@@ -11,7 +11,7 @@ function Header({location, data, onInputChange, onKeyDown, onFetchWeather}) {
         <div className={styles.searchBar}>
           <input
             type="text"
-            placeholder="Search for a city..."
+            placeholder="Search for a location..."
             value={location}
             onChange={onInputChange}
             onKeyDown={onKeyDown}
@@ -20,10 +20,6 @@ function Header({location, data, onInputChange, onKeyDown, onFetchWeather}) {
             <Search size={20} />
           </button>
         </div>
-        <div>
-        <p>Location: {data.name}</p>
-        <p>Temperature: {data.main ? `${Math.floor(data.main.temp)}°` : null}</p>
-      </div>
       </header>
       </div>
     </>

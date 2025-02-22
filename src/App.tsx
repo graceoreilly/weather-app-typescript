@@ -17,11 +17,12 @@ const App: React.FC = () => {
       }
     
       async function fetchWeather (location) {
-        if (!location) return;
+        if (!location) 
+          return;
         const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=Metric&appid=${API_KEY}`;
         const res = await fetch(url);
         const searchData = await res.json();
-    
+        console.log(searchData)
         setData(searchData);
         setLocation("")
       };
@@ -39,7 +40,6 @@ const App: React.FC = () => {
 
   return (
     <div>
-      {/* <Router /> */}
       <Header 
       location={location}
       data={data}
