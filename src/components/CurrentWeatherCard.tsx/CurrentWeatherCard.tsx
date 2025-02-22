@@ -1,46 +1,48 @@
-import { useState } from "react";
 import styles from "../../WeatherApp/WeatherApp.module.css";
+import sunny from "../../assets/sunny.png"
+import rainy from "../../assets/rainy.png"
+import snowy from "../../assets/snowy.png"
+import cloudy from "../../assets/cloudy.png"
 
-const API_ENDPOINT = import.meta.env.VITE_APP_API_KEY;
 
-function CurrentWeather() {
-  const [weatherNow, setWeatherNow] = useState(null)
-
-  async function handleClick() {
-    const response = await fetch(API_ENDPOINT)
-    const data = await response.json();
-    setWeatherNow(data)
+function CurrentWeather({data}) {
+  
+  const weatherImages = {
+    Clear: sunny,
+    Clouds: cloudy,
+    Rain: rainy,
+    Snow: snowy,
+    Haze: cloudy,
+    Mist: cloudy,
   }
+  
+  const weatherImage = data.weather ? weatherImages[data.weather[0].main]: null
 
-return <>
-<div onClick={handleClick} className={styles.appContainer}>
-{weatherNow ? (
-          <div>
-            <p>{JSON.stringify(weatherNow)}</p>
-            <section className={styles.currentWeather}>
-              <h2>Current Weather</h2>
-              <div className={styles.weatherInfo}>
-                <div className={styles.temperature}>
-                  <span className={styles.temp}>22°C</span>
-                  <span className={styles.feelsLike}>Feels like: 24°C</span>
-                </div>
-                <div className={styles.weatherIcon}>
-                  <div className={styles.sun}></div>
-                  <div className={styles.cloud}></div>
-                </div>
-                <div className={styles.details}>
-                  <p className={styles.condition}>Partly Cloudy</p>
-                  <p className={styles.humidity}>Humidity: 60%</p>
-                  <p className={styles.wind}>Wind: 5 km/h</p>
-                </div>
-              </div>
-            </section>
+  return (
+    <div className={styles.appContainer}>
+      <div>
+        <section className={styles.currentWeather}>
+          <h2>{data.name}</h2>
+          <div className={styles.weatherInfo}>
+            <div className={styles.temperature}>
+              <span className={styles.temp}>{data.main ? `${Math.floor(data.main.temp)}°C` : null}</span>
+              <span className={styles.feelsLike}>Feels like: {data.main ? `${Math.floor(data.main.feels_like)}°C` : null}</span>
+            </div>
+            <div className={styles.weatherIcon}>
+              <img src={weatherImage} alt="picture showing weather" />
+              {/* <div className={styles.sun}></div>
+              <div className={styles.cloud}></div> */}
+            </div>
+            <div className={styles.details}>
+              <p className={styles.condition}>{data.weather ? `${data.weather[0].main}` : null }</p>
+              <p className={styles.humidity}>Humidity: {data.main ? data.main.humidity : null}</p>
+              <p className={styles.wind}>Wind: {data.wind ? data.wind.speed : null}</p>
+            </div>
           </div>
-        ) : (
-          <p>Click to fetch current weather</p>
-        )}
-</div>
-</>
+        </section>
+      </div>
+    </div>
+  );
 }
 
 export default CurrentWeather;
