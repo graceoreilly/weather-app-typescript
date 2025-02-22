@@ -1,47 +1,12 @@
 "use client"
-
-import React, { useState } from "react"
 import styles from "./WeatherApp.module.css"
-import { Search, Droplets, Wind, Sunrise, Sunset } from "lucide-react"
 
-const WeatherApp: React.FC = () => {
-  const [city, setCity] = useState("")
+//Specifing the type as React.ReactElement ensures the function returns a valid React Element
+function WeatherApp(): React.ReactElement {
 
   return (
     <div className={styles.appContainer}>
-      <header className={styles.header}>
-        <h1>SnazzyWeather</h1>
-        <div className={styles.searchBar}>
-          <input
-            type="text"
-            placeholder="Search for a city..."
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-          />
-          <button>
-            <Search size={20} />
-          </button>
-        </div>
-      </header>
       <main>
-        <section className={styles.currentWeather}>
-          <h2>Current Weather</h2>
-          <div className={styles.weatherInfo}>
-            <div className={styles.temperature}>
-              <span className={styles.temp}>22°C</span>
-              <span className={styles.feelsLike}>Feels like: 24°C</span>
-            </div>
-            <div className={styles.weatherIcon}>
-              <div className={styles.sun}></div>
-              <div className={styles.cloud}></div>
-            </div>
-            <div className={styles.details}>
-              <p className={styles.condition}>Partly Cloudy</p>
-              <p className={styles.humidity}>Humidity: 60%</p>
-              <p className={styles.wind}>Wind: 5 km/h</p>
-            </div>
-          </div>
-        </section>
         <section className={styles.forecast}>
           <h2>5-Day Forecast</h2>
           <div className={styles.forecastContainer}>
